@@ -13,6 +13,16 @@ Contains and includes:
 
 * [Composer](https://getcomposer.org/)
 * [Tesseract](https://packages.debian.org/buster/tesseract-ocr)
+  * Language packs installed:
+    * `eng`
+    * `fra`
+    * `spa`
+    * `ita`
+    * `por`
+    * `hin`
+    * `deu`
+    * `jpn`
+    * `rus`
 * [Hypercube](https://github.com/Islandora/Crayfish/tree/dev/Hypercube)
 
 ## MVP 2 sprint
