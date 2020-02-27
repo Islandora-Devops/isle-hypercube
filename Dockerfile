@@ -40,13 +40,13 @@ RUN TESSERACT_PACKS="tesseract-ocr \
 ENV PATH=$PATH:$HOME/.composer/vendor/bin \
     COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HASH=${COMPOSER_HASH:-b9cc694e39b669376d7a033fb348324b945bce05} \
-    Hypercube_BRANCH=dev
+    HYPERCUBE_BRANCH=dev
 
 RUN curl https://raw.githubusercontent.com/composer/getcomposer.org/$COMPOSER_HASH/web/installer --output composer-setup.php --silent && \
     php composer-setup.php --filename=composer --install-dir=/usr/local/bin && \
     rm composer-setup.php && \
     rm -rf /var/www/html/* && \
-    git clone -b $Hypercube_BRANCH https://github.com/Islandora/Crayfish.git /var/www/html && \
+    git clone -b $HYPERCUBE_BRANCH https://github.com/Islandora/Crayfish.git /var/www/html && \
     cp /var/www/html/Hypercube/cfg/config.example.yaml /var/www/html/Hypercube/cfg/config.yaml && \
     composer install -d /var/www/html/Hypercube && \
     chown -Rv www-data:www-data /var/www/html && \
