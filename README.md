@@ -12,7 +12,7 @@ Based on:
 Contains and includes:
 
 * [Composer](https://getcomposer.org/)
-* [ImageMagick with JP2 support](https://launchpad.net/~lyrasis/+archive/ubuntu/imagemagick-jp2)
+* [Tesseract](https://packages.debian.org/buster/tesseract-ocr)
 * [Hypercube](https://github.com/Islandora/Crayfish/tree/dev/Hypercube)
 
 ## MVP 2 sprint
