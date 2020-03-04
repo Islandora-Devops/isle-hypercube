@@ -33,6 +33,8 @@ RUN TESSERACT_PACKS="tesseract-ocr \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+COPY rootfs /
+
 # Composer & Hypercube
 # @see: Composer https://github.com/composer/getcomposer.org/commits/master (replace hash below with most recent hash)
 # @see: Hypercube https://github.com/Islandora/Crayfish
@@ -83,9 +85,7 @@ ENTRYPOINT ["docker-php-entrypoint"]
 
 STOPSIGNAL SIGWINCH
 
-COPY rootfs /
-
 WORKDIR /opt/crayfish/Hypercube/
 
-EXPOSE 80
+EXPOSE 8000
 CMD ["apache2-foreground"]
