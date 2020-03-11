@@ -1,12 +1,14 @@
 FROM php:7.4.3-apache
 # Apache https://github.com/docker-library/php/blob/04c0ee7a0277e0ebc3fcdc46620cf6c1f6273100/7.4/buster/apache/Dockerfile
 
-## General Dependencies
+## General Dependencies & Poppler-utils
+# poppler-utils https://packages.debian.org/buster/poppler-utils
 RUN GEN_DEP_PACKS="software-properties-common \
     gnupg \
     zip \
     unzip \
-    git" && \
+    git \
+    poppler-utils" && \
     echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
     apt-get update && \
     apt-get install --no-install-recommends -y $GEN_DEP_PACKS && \
