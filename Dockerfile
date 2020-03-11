@@ -8,6 +8,7 @@ RUN GEN_DEP_PACKS="software-properties-common \
     zip \
     unzip \
     git \
+    gettext-base \
     poppler-utils" && \
     echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && \
     apt-get update && \
@@ -41,6 +42,9 @@ COPY rootfs /
 # @see: Composer https://github.com/composer/getcomposer.org/commits/master (replace hash below with most recent hash)
 # @see: Hypercube https://github.com/Islandora/Crayfish
 
+ARG HYPERCUBE_JWT_ADMIN_TOKEN
+ARG HYPERCUBE_LOG_LEVEL
+
 ENV PATH=$PATH:$HOME/.composer/vendor/bin \
     COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_HASH=${COMPOSER_HASH:-b9cc694e39b669376d7a033fb348324b945bce05} \
@@ -56,6 +60,8 @@ RUN curl https://raw.githubusercontent.com/composer/getcomposer.org/$COMPOSER_HA
     chown -Rv www-data:www-data /opt/crayfish && \
     mkdir /var/log/islandora && \
     chown www-data:www-data /var/log/islandora && \
+    envsubst < /opt/templates/syn-settings.xml.template > /opt/crayfish/Hypercube/syn-settings.xml && \
+    envsubst < /opt/templates/config.yaml.template > /opt/crayfish/Hypercube/cfg/config.yaml && \
     a2dissite 000-default && \
     #echo "ServerName localhost" | tee /etc/apache2/conf-available/servername.conf && \
     #a2enconf servername && \

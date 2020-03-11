@@ -23,17 +23,39 @@ Contains and includes:
     * `deu`
     * `jpn`
     * `rus`
+* [Poppler Utils](https://poppler.freedesktop.org/)
 * [Hypercube](https://github.com/Islandora/Crayfish/tree/dev/Hypercube)
 
 ## MVP 2 sprint
 
-* **TO DO:** Build a local image without docker-compose: _pseudo-code do not run this yet_
-  * `docker build -t islandoradevops/isle-hypercube .`
+### Building
 
-* **TO DO:** Despite successful build, further testing is required to determine if the resulting container works, what happens and how to communicate with it.
+There are two build arguments that you must provide in order to build this container:
 
-* **TO DO:** How to expose API-X endpoints for Hypercube e.g. `svc:ocr` to be called by curl or is this an Apache setup change on the Drupal site or both the service and site?
+* HYPERCUBE_JWT_ADMIN_TOKEN - An easy to remember token to replace an actual JWT when testing (usually "islandora")
+* HYPERCUBE_LOG_LEVEL - Logging level for the Hypercube microservice (DEBUG, INFO, WARN, ERROR, etc...)
 
-* **TO DO:** Add SYN / JWT
+In order to build, run this command
 
-* **TO DO:** Convert Apache logging to stdout / stderr
+* `docker build -t isle-hypercube --build-arg HYPERCUBE_JWT_ADMIN_TOKEN=islandora --build-arg HYPERCUBE_LOG_LEVEL=DEBUG .`
+
+Or if you've defined the build args as environment variables already, simply
+
+* `docker build -t isle-hypercube --build-arg HYPERCUBE_JWT_ADMIN_TOKEN --build-arg HYPERCUBE_LOG_LEVEL .`
+
+### Running
+
+To run the container, you'll need to bind mount two things:
+
+* A public key from the key pair used to sign and verify JWT tokens at `/opt/keys/public.key`
+* A `php.ini` file with output buffering enabled at `/usr/local/etc/php/php.ini`
+
+* `docker run -d -p 8000:8000 -v /path/to/public.key:/opt/keys/public.key -v /path/to/php.ini:/usr/local/etc/php/php.ini isle-hypercube`
+
+### Testing
+
+To test Homarus, you can issue a curl command against it to verify its endpoint is working.  For example, to run OCR on a sample TIFF:
+
+* `curl -i -H "Authorization: Bearer islandora" -H "Apix-Ldp-Resource: https://www.fileformat.info/format/tiff/sample/3794038f08df403bb446a97f897c578d/download" idcp.localhost:8000`
+
+Note the the `Authorization` header contains the HYPERCUBE_JWT_ADMIN_TOKEN value after `Bearer`.
