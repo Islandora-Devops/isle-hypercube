@@ -1,0 +1,7 @@
+[template]
+src = "config.yaml.tpl"
+dest = "/opt/crayfish/Hypercube/cfg/config.yaml"
+mode = "0644"
+keys = [
+    "/hypercube/log/level",
+]

@@ -3,6 +3,6 @@
 <config version='1'>
     <site algorithm='RS256' encoding='PEM' path='/opt/jwt/public.key' default='true' anonymous='true'/>
     <token user='admin' roles='admin'>
-        $HYPERCUBE_JWT_ADMIN_TOKEN
+        {{getv "/hypercube/jwt/admin/token"}}
     </token>
 </config>
