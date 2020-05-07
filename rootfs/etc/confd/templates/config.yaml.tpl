@@ -13,7 +13,7 @@ log:
   # DEBUG, INFO, NOTICE, WARNING, ERROR, CRITICAL, ALERT, EMERGENCY, NONE
   # log level none won't open logfile
   level: {{getv "/hypercube/log/level"}}
-  file: ../hypercube.log
+  file: /var/log/islandora/hypercube.log
 
 syn:
   # toggles JWT security for service
