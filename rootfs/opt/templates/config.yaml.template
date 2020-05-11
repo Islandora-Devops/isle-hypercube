@@ -6,7 +6,7 @@ hypercube:
   pdftotext_executable: pdftotext
 
 fedora_resource:
-  base_url: http://idcp.localhost:8080/fcrepo/rest
+  base_url: http://fcrepo:8080/fcrepo/rest
 
 log:
   # Valid log levels are:
