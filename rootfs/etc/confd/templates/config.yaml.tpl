@@ -12,7 +12,7 @@ log:
   # Valid log levels are:
   # DEBUG, INFO, NOTICE, WARNING, ERROR, CRITICAL, ALERT, EMERGENCY, NONE
   # log level none won't open logfile
-  level: $HYPERCUBE_LOG_LEVEL
+  level: {{getv "/hypercube/log/level"}}
   file: /var/log/islandora/hypercube.log
 
 syn:

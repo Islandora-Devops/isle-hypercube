@@ -1,0 +1,7 @@
+[template]
+src = "syn-settings.xml.tpl"
+dest = "/opt/crayfish/Hypercube/syn-settings.xml"
+mode = "0644"
+keys = [
+    "/hypercube/jwt/admin/token",
+]
