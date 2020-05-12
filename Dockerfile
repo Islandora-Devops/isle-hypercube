@@ -1,5 +1,4 @@
-FROM isle-crayfish-base:latest
-# Apache https://github.com/docker-library/php/blob/04c0ee7a0277e0ebc3fcdc46620cf6c1f6273100/7.4/buster/apache/Dockerfile
+FROM islandora/isle-crayfish-base:latest
 
 ## Tesseract and pdftotext
 # @see: https://packages.debian.org/buster/tesseract-ocr
